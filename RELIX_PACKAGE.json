@@ -1,6 +1,6 @@
 {
-  "method": "RELIX",
-  "version": "1.0.0",
+  "method": "Neural Indexer",
+  "version": "1.0.1",
   "interface": "measured integrated reflections",
   "checkpoint_format": "relix-unified-checkpoint-v1",
   "publication_status": "release snapshot",
@@ -10,7 +10,7 @@
     "data": "Hugging Face test split",
     "model": "GitHub release"
   },
-  "repository": "https://github.com/max6616/RELIX",
+  "repository": "https://github.com/max6616/Neural-Indexer",
   "simulator_sources": [
     {
       "path": "simulator/models/__init__.py",
@@ -56,5 +56,7 @@
     "revision": "0ab8d55",
     "revision_full": "0ab8d5594f927fdc7e97d5a8906fb970be26f31e",
     "split": "test"
-  }
+  },
+  "paper_title": "Neural Indexer for robust lattice recovery from single-crystal X-ray diffraction",
+  "public_name": "Neural Indexer"
 }

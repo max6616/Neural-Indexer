@@ -14,7 +14,7 @@ columns. Standard integrated columns are:
 | h, k, l | simulator reference integer indices | reference only |
 | qx, qy, qz | simulator reference reciprocal coordinates | reference only |
 
-The RELIX CSV reader selects only the first four measured quantities by column
+The Neural Indexer CSV reader selects only the first four measured quantities by column
 name. Instrument metadata provide distance in mm, beam centre in pixels, pixel
 size in micrometres, wavelength in angstroms and the rotation-axis unit vector.
 The original simulator label sidecars record the jointly transformed primitive
@@ -29,7 +29,7 @@ cell, orientation and indices; use the sidecars for those reference conventions.
 An NPZ for this interface contains measured data and instrument settings. The
 model never consumes the simulation reference cell, orientation or HKL labels.
 
-## RELIX output
+## Neural Indexer output
 
 `indexing.npz` contains the available fields among:
 `q`, `basis`, `hkl`, `accepted`, `cell`, `orientation`, `space_group`,

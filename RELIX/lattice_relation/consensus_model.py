@@ -1,4 +1,4 @@
-"""Frozen RELIX inference definitions; release packaging selects only required symbols."""
+"""Frozen Neural Indexer inference definitions; release packaging selects only required symbols."""
 from __future__ import annotations
 
 import torch

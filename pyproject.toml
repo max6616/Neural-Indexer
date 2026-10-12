@@ -3,14 +3,15 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "relix-core"
-version = "1.0.0"
-description = "RELIX diffraction indexing and its integrated-reflection simulator"
+name = "neural-indexer-core"
+version = "1.0.1"
+description = "Neural Indexer diffraction indexing and its integrated-reflection simulator"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
 dependencies = ["numpy", "scipy", "torch", "sympy"]
 
 [project.scripts]
+neural-indexer = "relix.cli:main"
 relix = "relix.cli:main"
 
 [tool.setuptools]
@@ -25,5 +26,5 @@ lattice_aligned = ["assets/*.json"]
 lattice_relation = ["assets/*.json"]
 
 [project.urls]
-Repository = "https://github.com/max6616/RELIX"
-Releases = "https://github.com/max6616/RELIX/releases/tag/v1.0.0"
+Repository = "https://github.com/max6616/Neural-Indexer"
+Releases = "https://github.com/max6616/Neural-Indexer/releases/tag/v1.0.1"

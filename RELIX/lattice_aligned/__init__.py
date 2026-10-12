@@ -1,1 +1,1 @@
-"""Internal RELIX scientific components."""
+"""Internal Neural Indexer scientific components."""

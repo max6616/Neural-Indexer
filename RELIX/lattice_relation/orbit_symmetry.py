@@ -1,4 +1,4 @@
-"""Frozen RELIX inference definitions; release packaging selects only required symbols."""
+"""Frozen Neural Indexer inference definitions; release packaging selects only required symbols."""
 from __future__ import annotations
 
 from xrdt_workspace import workspace_root, frozen_source_digest, canonical_relative, source_digest_matches

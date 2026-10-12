@@ -1,24 +1,32 @@
-# RELIX
+# Neural Indexer
 
-RELIX indexes integrated single-crystal diffraction observations. Its single
-`RELIX.pt` checkpoint contains the fixed inference configuration and all learned
-components. The Python loader assembles the complete RELIX inference pipeline.
+Neural Indexer indexes integrated single-crystal diffraction observations. Its single
+`NeuralIndexer.pt` checkpoint contains the fixed inference configuration and all learned
+components. The Python loader assembles the complete Neural Indexer inference pipeline.
 
 This release contains the inference algorithm, diffraction simulator, small
 input examples, and commands to generate, read and index observations.
-Downloads and dataset links are listed in the [v1.0.0 release](https://github.com/max6616/RELIX/releases/tag/v1.0.0).
+Downloads and dataset links are listed in the [v1.0.1 release](https://github.com/max6616/Neural-Indexer/releases/tag/v1.0.1).
 
 `RELIX/` contains the model architecture and indexing algorithm; `simulator/`
 contains the diffraction simulator; `examples/` contains small example inputs.
 Source code is distributed through this repository. The simulation test
 dataset is available on [Hugging Face](https://doi.org/10.57967/hf/10757).
 
+## Paper
+
+**Neural Indexer for robust lattice recovery from single-crystal X-ray diffraction**
+
+The public method name is Neural Indexer. Existing `RELIX/`, `relix`,
+`run_relix.py` and dataset volume names remain compatible. This naming
+revision preserves the v1.0.0 implementation and model parameters.
+
 ## Downloads
 
-The unified model is an attachment to the [v1.0.0 release](https://github.com/max6616/RELIX/releases/tag/v1.0.0). Download it before running inference:
+The unified model is an attachment to the [v1.0.1 release](https://github.com/max6616/Neural-Indexer/releases/tag/v1.0.1). Download it before running inference:
 
 ```sh
-curl -fL https://github.com/max6616/RELIX/releases/download/v1.0.0/RELIX.pt -o RELIX.pt
+curl -fL https://github.com/max6616/Neural-Indexer/releases/download/v1.0.1/NeuralIndexer.pt -o NeuralIndexer.pt
 ```
 
 ## Quick start
@@ -30,7 +38,7 @@ The inference deadline uses POSIX timers and runs on the main Python thread.
 ```sh
 conda env create -f environment-inference.yml
 conda activate relix
-python run_relix.py --model RELIX.pt --input examples/measured_scan.npz --output output/example
+python run_relix.py --model NeuralIndexer.pt --input examples/measured_scan.npz --output output/example
 ```
 
 The command writes `indexing.npz` (per-reflection integer indices and acceptance,
@@ -45,7 +53,7 @@ For optional command installation from this directory:
 
 ```sh
 python -m pip install --no-deps --no-build-isolation -e .
-relix --model RELIX.pt --input examples/integrated_scan.csv --output output/csv
+neural-indexer --model NeuralIndexer.pt --input examples/integrated_scan.csv --output output/csv
 ```
 
 Python interface:
@@ -56,7 +64,7 @@ import relix
 from relix.io import read_measurements
 
 torch.set_num_threads(1)
-model = relix.load("/path/to/RELIX.pt", device="cpu")
+model = relix.load("/path/to/NeuralIndexer.pt", device="cpu")
 observations, instrument = read_measurements("examples/integrated_scan.csv")
 prediction = model.predict_measured(observations, instrument)
 ```
@@ -79,11 +87,11 @@ python generate_simulation.py --cif examples/example.cif --count 10 --seed 20260
 The supplied example CIF has archived source index 81804. For new structures,
 choose a stable nonnegative source index and retain it with the master seed.
 The generated CSVs have simulator reference labels in separate columns and
-sidecars. Run one generated scan through RELIX:
+sidecars. Run one generated scan through Neural Indexer:
 
 ```sh
 conda activate relix
-python run_relix.py --model RELIX.pt --input generated/example/combined_matrix_0000.csv --output output/generated
+python run_relix.py --model NeuralIndexer.pt --input generated/example/combined_matrix_0000.csv --output output/generated
 ```
 
 The original batch simulator entrypoint is also supplied in
@@ -99,13 +107,13 @@ The full primary corpus has fixed train, val and test splits of 800,000,
 organized separately for subsequent release. The split assignments are fixed
 by crystal group, with ten scans per crystal.
 
-The [release page](https://github.com/max6616/RELIX/releases/tag/v1.0.0) links to the [published test dataset](https://doi.org/10.57967/hf/10757). Download
+The [release page](https://github.com/max6616/Neural-Indexer/releases/tag/v1.0.1) links to the [published test dataset](https://doi.org/10.57967/hf/10757). Download
 both `RELIX-test-NNN.tar` volumes and the metadata ZIP. Follow its README
 to extract `test/raw/` and `test/metadata/`. `DATA_INDEX.csv` maps crystal IDs
 to volumes; `test.txt` lists the fixed scan identifiers.
 
 ```sh
-python run_relix.py --model RELIX.pt --input /path/to/data/test/raw/2232561.tar.gz --scan 0 --output output/corpus
+python run_relix.py --model NeuralIndexer.pt --input /path/to/data/test/raw/2232561.tar.gz --scan 0 --output output/corpus
 python read_simulation.py /path/to/data/test/raw/2232561.tar.gz --scan 0
 ```
 
@@ -125,7 +133,7 @@ terms are listed in `THIRD_PARTY_NOTICES.md`.
 
 ## License and citation
 
-RELIX and the supplied simulator are licensed under MIT; see `LICENSE`.
+Neural Indexer and the supplied simulator are licensed under MIT; see `LICENSE`.
 The released model parameters and simulation data use CC BY 4.0.
 Source CIFs and dependencies retain their own attribution and license terms.
 Please cite the software version in `CITATION.cff` and the test dataset
@@ -146,3 +154,5 @@ The published test split contains 10,000 source crystals and 100,000 simulated s
   url = {https://doi.org/10.57967/hf/10757}
 }
 ```
+
+The DOI citation above retains the title of its registered revision. The current dataset display name is Neural Indexer.

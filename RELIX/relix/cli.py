@@ -1,4 +1,4 @@
-"""Run one measurement through the unified RELIX model."""
+"""Run one measurement through the unified Neural Indexer model."""
 import argparse
 import json
 from pathlib import Path
@@ -6,7 +6,7 @@ from pathlib import Path
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--model", type=Path, required=True, help="RELIX.pt")
+    p.add_argument("--model", type=Path, required=True, help="NeuralIndexer.pt")
     p.add_argument("--input", type=Path, required=True, help="CSV, per-crystal .tar.gz, or measurement NPZ")
     p.add_argument("--scan", type=int, default=0, help="0-based scan within a per-crystal archive")
     p.add_argument("--device", default="cpu", choices=("cpu", "cuda"))

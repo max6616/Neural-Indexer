@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run RELIX directly from this source checkout."""
+"""Run Neural Indexer directly from this source checkout."""
 from pathlib import Path
 import sys
 
